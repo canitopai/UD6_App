@@ -39,7 +39,6 @@ class ProductAdapter(private val onProductClicked: (ProductItem) -> Unit) :
             .load(prod.imageUrl)
             .placeholder(R.drawable.ic_launcher_foreground)
             .into(holder.binding.imageView)
-        Log.e("Retrofit","Salió bien")
 
 
         holder.binding.root.setOnClickListener {

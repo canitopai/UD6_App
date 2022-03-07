@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_productListFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment" />
+        <action
+            android:id="@+id/action_productListFragment_to_productAddFragment"
+            app:destination="@id/productAddFragment" />
     </fragment>
     <fragment
         android:id="@+id/productDetailFragment"
@@ -21,5 +24,16 @@
         <argument
             android:name="id"
             app:argType="string" />
+        <action
+            android:id="@+id/action_productDetailFragment_to_productListFragment"
+            app:destination="@id/productListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productAddFragment"
+        android:name="com.canitopai.ud6_recu_app.ui.ProductAddFragment"
+        android:label="ProductAddFragment" >
+        <action
+            android:id="@+id/action_productAddFragment_to_productListFragment"
+            app:destination="@id/productListFragment" />
     </fragment>
 </navigation>

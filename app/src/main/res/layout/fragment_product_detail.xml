@@ -1,14 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="#F1CF7F"
     tools:context=".ui.ProductDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:backgroundTint="#F1CF7F"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="15dp"
+        app:cardMaxElevation="5dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="SpeakableTextPresentCheck">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivProd"
+                    android:layout_width="138dp"
+                    android:layout_height="118dp"
+                    android:layout_marginTop="28dp"
+                    android:src="@drawable/ic_launcher_background"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.076"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/lblDisc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:text="Precio"
+                    android:textSize="24sp"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toEndOf="@+id/ivProd"
+                    app:layout_constraintTop_toBottomOf="@+id/ivDisc" />
+
+                <TextView
+                    android:id="@+id/tvDiscPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:textSize="24sp"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toEndOf="@+id/tvDtName3"
+                    app:layout_constraintTop_toTopOf="@+id/lblDisc" />
+
+                <TextView
+                    android:id="@+id/lblDisc2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:text="€"
+                    android:textSize="24sp"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toEndOf="@+id/tvDiscPrice"
+                    app:layout_constraintTop_toTopOf="@+id/tvDiscPrice" />
+
+                <TextView
+                    android:id="@+id/tvDtName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="46dp"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:text="Nombre"
+                    android:textSize="34sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivProd" />
+
+                <TextView
+                    android:id="@+id/tvDtName3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:text="Precio"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toEndOf="@+id/ivProd"
+                    app:layout_constraintTop_toTopOf="@+id/ivProd" />
+
+                <TextView
+                    android:id="@+id/tvDtPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toEndOf="@+id/tvDtName3"
+                    app:layout_constraintTop_toTopOf="@+id/tvDtName3" />
+
+                <TextView
+                    android:id="@+id/tvDtPrice2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:text="€"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toEndOf="@+id/tvDtPrice"
+                    app:layout_constraintTop_toTopOf="@+id/tvDtName3" />
+
+                <TextView
+                    android:id="@+id/tvDtDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:overScrollMode="ifContentScrolls"
+                    android:text="Descripcion"
+                    android:textSize="34sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/tvDtName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDtName" />
+
+                <TextView
+                    android:id="@+id/lblDtStock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:text="Stock: "
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="@+id/tvDtName"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDtDesc" />
+
+                <TextView
+                    android:id="@+id/lblDtStock3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="28dp"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:text="unidades"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toEndOf="@+id/tvDtStock"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDtDesc" />
+
+                <TextView
+                    android:id="@+id/lblEmpty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="28dp"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:text="¡No disponible!"
+                    android:textColor="@color/design_default_color_error"
+                    android:textSize="24sp"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toEndOf="@+id/lblDtStock3"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDtDesc" />
+
+                <TextView
+                    android:id="@+id/tvDtStock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:text="999"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toEndOf="@+id/lblDtStock"
+                    app:layout_constraintTop_toTopOf="@+id/lblDtStock" />
+
+                <ImageView
+                    android:id="@+id/ivDisc"
+                    android:layout_width="59dp"
+                    android:layout_height="74dp"
+                    android:layout_marginStart="58dp"
+                    android:src="@android:drawable/arrow_down_float"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toEndOf="@+id/ivProd"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDtName3" />
+
+                <Button
+                    android:id="@+id/btnBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:backgroundTint="#F3A968"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:text="Volver"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDtStock" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

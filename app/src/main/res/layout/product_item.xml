@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:layout_width="409dp"
@@ -26,13 +26,13 @@
                 android:id="@+id/cardView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="190dp"
+                android:layout_marginEnd="7dp"
                 android:backgroundTint="#F1CF7F"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="3dp"
                 app:cardMaxElevation="3dp"
                 app:cardUseCompatPadding="true"
-                app:layout_constraintStart_toEndOf="@+id/tvName"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageButton2">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -71,6 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
+                android:layout_marginTop="50dp"
                 android:fontFamily="@font/akaya_telivigala"
                 android:text="Nombre"
                 android:textSize="28sp"
@@ -93,16 +94,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                android:layout_marginBottom="10dp"
                 android:fontFamily="@font/akaya_telivigala"
                 android:text="Desc"
                 android:textSize="28sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tvName"
                 app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="144dp"
+                android:layout_height="123dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 app:layout_constraintStart_toStartOf="parent"

@@ -1,60 +1,105 @@
 package com.canitopai.ud6_recu_app.ui
-
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.canitopai.proyectointegrador.core.NetworkManager
 import com.canitopai.ud6_recu_app.R
+import com.canitopai.ud6_recu_app.data.model.ProductItem
+import com.canitopai.ud6_recu_app.databinding.FragmentProductDetailBinding
+import com.squareup.picasso.Picasso
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProductDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ProductDetailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentProductDetailBinding? = null
+    private val binding
+        get() = _binding!!
+    private val args: ProductDetailFragmentArgs by navArgs()
+
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentProductDetailBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        requestData()
+
+        binding.btnBack.setOnClickListener {
+            val action = ProductDetailFragmentDirections.actionProductDetailFragmentToProductListFragment()
+           findNavController().navigate(action)
+         }
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_product_detail, container, false)
-    }
+    private fun requestData() {
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProductDetailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProductDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+
+        NetworkManager.service.getProductDetailed(args.id)?.enqueue(object : Callback<ProductItem?> {
+
+
+            override fun onFailure(call: Call<ProductItem?>, t: Throwable) {
+                Toast.makeText(
+                    context,
+                    "Algo no ha funcionado como esperábamos",
+                    Toast.LENGTH_SHORT
+                ).show()
+                Log.e("Retrofit", "Error: ${t.localizedMessage}", t)
+            }
+
+            override fun onResponse(
+                call: Call<ProductItem?>,
+                response: Response<ProductItem?>
+            ) {
+                if (response.isSuccessful) {
+                    if (response.body()?.discountPrice!! < response.body()?.regularPrice!!){
+                        binding.ivDisc.visibility = View.VISIBLE
+                        binding.tvDiscPrice.visibility = View.VISIBLE
+                        binding.lblDisc.visibility = View.VISIBLE
+                        binding.lblDisc2.visibility = View.VISIBLE
+                    }
+                    if (response.body()?.available == false){
+                        binding.lblEmpty.visibility = View.VISIBLE
+                    }
+                    binding.tvDtName.text = response.body()?.name
+                    binding.tvDtDesc.text = response.body()?.description
+                    binding.tvDiscPrice.text = response.body()?.discountPrice.toString()
+                    binding.tvDtPrice.text = response.body()?.regularPrice.toString()
+                    binding.tvDtStock.text = response.body()?.stock.toString()
+                    Picasso.get()
+                        .load(response.body()?.imageUrl)
+                        .placeholder(R.drawable.ic_launcher_foreground)
+                        .into(binding.ivProd)
+                    Log.e("Retrofit", "Salió bien")
+                } else {
+                    Toast.makeText(context, "400", Toast.LENGTH_SHORT).show()
                 }
             }
+
+        })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

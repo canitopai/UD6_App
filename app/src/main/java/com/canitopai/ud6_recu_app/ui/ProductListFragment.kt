@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.canitopai.proyectointegrador.core.NetworkManager
+import com.canitopai.ud6_recu_app.R
 import com.canitopai.ud6_recu_app.data.model.ProductItem
 
 
@@ -27,6 +29,7 @@ class ProductListFragment : Fragment() {
     private var _binding: FragmentProductListBinding? = null
     private val binding
         get() = _binding!!
+
     private val adapter = ProductAdapter {
 
 
@@ -55,9 +58,9 @@ class ProductListFragment : Fragment() {
         binding.recyclerView.layoutManager = GridLayoutManager(context, 1)
         binding.recyclerView.adapter = adapter
         binding.btnAdd.setOnClickListener{
-           //() val action = ProductListFragmentDirections.actionProductListFragmentToProductAddFragment(
-            //)
-            //findNavController().navigate(action)
+            val action = ProductListFragmentDirections.actionProductListFragmentToProductAddFragment(
+            )
+            findNavController().navigate(action)
         }
         requestData()
     }

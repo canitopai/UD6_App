@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ConstraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="#F1CF7F"
+    tools:context=".ui.ProductDetailFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#F1CF7F"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="15dp"
+        app:cardMaxElevation="5dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="SpeakableTextPresentCheck">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/lblDisc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:text="Descuento"
+                    android:textSize="24sp"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="@+id/tvDtName3"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDtName3" />
+
+                <TextView
+                    android:id="@+id/lblDisc2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:text="€"
+                    android:textSize="24sp"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toEndOf="@+id/etDisc"
+                    app:layout_constraintTop_toTopOf="@+id/etDisc" />
+
+                <TextView
+                    android:id="@+id/tvDtName3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:text="Precio"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="@+id/etDesc"
+                    app:layout_constraintTop_toBottomOf="@+id/etDesc" />
+
+                <TextView
+                    android:id="@+id/tvDtPrice2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:text="€"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toEndOf="@+id/etPrice"
+                    app:layout_constraintTop_toTopOf="@+id/tvDtName3" />
+
+                <TextView
+                    android:id="@+id/lblDtStock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:text="Stock: "
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="@+id/etName"
+                    app:layout_constraintTop_toBottomOf="@+id/lblDisc" />
+
+                <TextView
+                    android:id="@+id/lblDtStock3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:text="unidades"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toEndOf="@+id/etStock"
+                    app:layout_constraintTop_toTopOf="@+id/etStock" />
+
+                <Button
+                    android:id="@+id/btnBack2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:backgroundTint="#F3A968"
+                    android:fontFamily="@font/akaya_telivigala"
+                    android:text="Volver"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnAgregar" />
+
+                <EditText
+                    android:id="@+id/etName"
+                    android:layout_width="205dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="30dp"
+                    android:ems="10"
+                    android:hint="Nombre Producto"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/etDesc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="Descripción"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    app:layout_constraintStart_toStartOf="@+id/etName"
+                    app:layout_constraintTop_toBottomOf="@+id/etName" />
+
+                <EditText
+                    android:id="@+id/etStock"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:ems="10"
+                    android:hint="Ud."
+                    android:inputType="textPersonName"
+                    app:layout_constraintStart_toEndOf="@+id/lblDtStock"
+                    app:layout_constraintTop_toTopOf="@+id/lblDtStock" />
+
+                <EditText
+                    android:id="@+id/etDisc"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:ems="10"
+                    android:hint="00"
+                    android:inputType="textPersonName"
+                    app:layout_constraintStart_toEndOf="@+id/lblDisc"
+                    app:layout_constraintTop_toTopOf="@+id/lblDisc" />
+
+                <EditText
+                    android:id="@+id/etPrice"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="3dp"
+                    android:ems="10"
+                    android:hint="00"
+                    android:inputType="textPersonName"
+                    app:layout_constraintStart_toEndOf="@+id/tvDtName3"
+                    app:layout_constraintTop_toTopOf="@+id/tvDtName3" />
+
+                <Button
+                    android:id="@+id/btnAgregar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:backgroundTint="#F3A968"
+                    android:text="Agregar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lblDtStock3" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
