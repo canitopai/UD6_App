@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.canitopai.proyectointegrador.core.NetworkManager
 import com.canitopai.ud6_recu_app.R
 import com.canitopai.ud6_recu_app.data.model.ProductItem
+import com.canitopai.ud6_recu_app.databinding.FragmentProductFavBinding
 
 
 import com.canitopai.ud6_recu_app.databinding.FragmentProductListBinding
@@ -23,17 +24,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 // TODO: Rename parameter arguments, choose names that match
 
-class ProductListFragment : Fragment() {
+class ProductFavFragment : Fragment() {
 
 
-    private var _binding: FragmentProductListBinding? = null
+    private var _binding: FragmentProductFavBinding? = null
     private val binding
         get() = _binding!!
 
     private val adapter = ProductAdapter {
 
 
-        val action = ProductListFragmentDirections.actionProductListFragmentToProductDetailFragment(
+        val action = ProductFavFragmentDirections.actionProductFavFragment2ToProductDetailFragment(
             it.id
         )
         findNavController().navigate(action)
@@ -45,7 +46,7 @@ class ProductListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentProductListBinding.inflate(inflater, container, false)
+        _binding = FragmentProductFavBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -55,34 +56,19 @@ class ProductListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        binding.recyclerView.layoutManager = GridLayoutManager(context, 1)
-        binding.recyclerView.adapter = adapter
-        binding.btnAdd.setOnClickListener{
-            val action = ProductListFragmentDirections.actionProductListFragmentToProductAddFragment(
+        binding.recyclerView2.layoutManager = GridLayoutManager(context, 1)
+        binding.recyclerView2.adapter = adapter
+        binding.btnToList.setOnClickListener{
+            val action = ProductFavFragmentDirections.actionProductFavFragment2ToProductListFragment(
             )
             findNavController().navigate(action)
-        }
-        binding.btnFav.setOnClickListener {
-            val action = ProductListFragmentDirections.actionProductListFragmentToProductFavFragment2()
-            findNavController().navigate(action)
-        }
-        binding.btnSearch.setOnClickListener {
-            val filteredList: MutableList<ProductItem> = mutableListOf()
-            val filtro = binding.etSearch.text.toString()
-            for(i in adapter.currentList){
-                if (i.name.lowercase().contains(filtro.lowercase())){
-                    filteredList.add(i)
-                    binding.recyclerView
-                }
-            }
-
         }
         requestData()
     }
 
 
     private fun requestData() {
-
+    //room needed here
         NetworkManager.service.getProducts().enqueue(object : Callback<List<ProductItem>> {
 
 

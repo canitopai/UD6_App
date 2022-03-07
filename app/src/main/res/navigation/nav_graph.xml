@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_productListFragment_to_productAddFragment"
             app:destination="@id/productAddFragment" />
+        <action
+            android:id="@+id/action_productListFragment_to_productFavFragment2"
+            app:destination="@id/productFavFragment2" />
     </fragment>
     <fragment
         android:id="@+id/productDetailFragment"
@@ -35,5 +38,17 @@
         <action
             android:id="@+id/action_productAddFragment_to_productListFragment"
             app:destination="@id/productListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productFavFragment2"
+        android:name="com.canitopai.ud6_recu_app.ui.ProductFavFragment"
+        android:label="fragment_product_fav"
+        tools:layout="@layout/fragment_product_fav" >
+        <action
+            android:id="@+id/action_productFavFragment2_to_productListFragment"
+            app:destination="@id/productListFragment" />
+        <action
+            android:id="@+id/action_productFavFragment2_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
     </fragment>
 </navigation>

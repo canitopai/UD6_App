@@ -17,6 +17,9 @@ import com.squareup.picasso.Picasso
 
 class ProductAdapter(private val onProductClicked: (ProductItem) -> Unit) :
     ListAdapter<ProductItem, ProductAdapter.ViewHolder>(ProductItemCallback()) {
+    fun updateData(){
+        notifyDataSetChanged()
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -61,4 +64,5 @@ class ProductItemCallback : DiffUtil.ItemCallback<ProductItem>() {
     ): Boolean = oldItem.id == newItem.id
 
 }
+
 
