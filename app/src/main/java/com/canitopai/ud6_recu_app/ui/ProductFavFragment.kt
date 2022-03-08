@@ -34,7 +34,7 @@ class ProductFavFragment : Fragment() {
         get() = _binding!!
 
     private val adapter = ProductAdapter {
-        it.name?.let { it1 -> db.productDao().deleteProd(it1) }
+        db.productDao().deleteProd(it.name)
         //val action = ProductFavFragmentDirections.actionProductFavFragment2ToProductDetailFragment(
           //  it.id
         //)
@@ -70,9 +70,11 @@ class ProductFavFragment : Fragment() {
 
         if(mCursor.size == 0){
             binding.lblnfo.text = "Lista de favoritos vacía"
+            binding.noFavIcon.visibility = View.VISIBLE
         }
         else{
             binding.lblnfo.text = "Pulsa para eliminar"
+            binding.noFavIcon.visibility = View.INVISIBLE
         }
     }
     private fun refreshProducts() {
