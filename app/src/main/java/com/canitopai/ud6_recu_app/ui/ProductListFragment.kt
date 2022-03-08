@@ -53,7 +53,7 @@ class ProductListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState:Bundle?){
         super.onViewCreated(view, savedInstanceState)
-
+        requestData()
 
         binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
         binding.recyclerView.adapter = adapter
@@ -73,7 +73,7 @@ class ProductListFragment : Fragment() {
             }
 
         }
-        requestData()
+
     }
 
 

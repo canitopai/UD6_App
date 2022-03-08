@@ -34,7 +34,7 @@ class ProductFavFragment : Fragment() {
         get() = _binding!!
 
     private val adapter = ProductAdapter {
-        db.productDao().deleteProd(it.name)
+        it.name?.let { it1 -> db.productDao().deleteProd(it1) }
         //val action = ProductFavFragmentDirections.actionProductFavFragment2ToProductDetailFragment(
           //  it.id
         //)

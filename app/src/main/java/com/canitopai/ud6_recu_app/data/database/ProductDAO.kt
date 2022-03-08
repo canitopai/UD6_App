@@ -16,6 +16,8 @@ interface ProductDAO {
  fun delete(product: ProductModel)
  @Query("DELETE FROM Product WHERE Product.name = :productName")
  fun deleteProd(productName: String)
+ @Query("SELECT EXISTS (SELECT 1 FROM Product WHERE Product.name = :productName)")
+ fun exists(productName: String): Boolean
  //@Query("SELECT COUNT(id) FROM Product")
  //fun checkIfEmpty()
 }

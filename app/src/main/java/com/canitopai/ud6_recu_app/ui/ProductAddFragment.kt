@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -36,9 +37,11 @@ class ProductAddFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnAgregar.setOnClickListener{
-            postProduct()
-            val action = ProductAddFragmentDirections.actionProductAddFragmentToProductListFragment()
-            findNavController().navigate(action)
+            if (checkEmpty()==true){
+                postProduct()
+                val action = ProductAddFragmentDirections.actionProductAddFragmentToProductListFragment()
+                findNavController().navigate(action)
+            }
         }
         binding.btnBack2.setOnClickListener {
             val action = ProductAddFragmentDirections.actionProductAddFragmentToProductListFragment()
@@ -68,7 +71,12 @@ class ProductAddFragment : Fragment() {
         return sb.toString()
     }
     private fun postProduct() {
-        NetworkManager.service.savePost(ProductItem(true,etDesc.text.toString(),etDisc.text.toString().toDouble(),"3fa85f64-5717-4562-b3fc-2c963f66afa6","https://upload.wikimedia.org/wikipedia/commons/5/58/Animal_Crossing_Leaf.png?20191119013532",etName.text.toString(),etPrice.text.toString().toDouble(),etStock.text.toString().toInt())).enqueue(object :
+        NetworkManager.service.savePost(ProductItem(true,etDesc.text.toString(),etDisc.text.toString().toDouble()
+            ,"3fa85f64-5717-4562-b3fc-2c963f66afa6"
+            ,"https://upload.wikimedia.org/wikipedia/commons/5/58/Animal_Crossing_Leaf.png?20191119013532"
+            ,etName.text.toString(),etPrice.text.toString().toDouble()
+            ,etStock.text.toString().toInt()))
+            .enqueue(object :
             Callback<ProductItem> {
             override fun onResponse(call: Call<ProductItem>, response: Response<ProductItem>) {
                 if (response.isSuccessful) {
@@ -84,6 +92,29 @@ class ProductAddFragment : Fragment() {
                 Toast.makeText(context, "error de conexion", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+    fun checkEmpty(): Boolean {
+        if (etName.text.toString().equals("")){
+            Toast.makeText(context, "Rellene el campo nombre", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (etDesc.text.toString().equals("")){
+            Toast.makeText(context, "Rellene el campo descripción", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (etPrice.text.toString().equals("")){
+            Toast.makeText(context, "Rellene el campo precio", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (etDisc.text.toString().equals("")){
+            Toast.makeText(context, "Rellene el campo descuento", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if (etStock.text.toString().equals("")){
+            Toast.makeText(context, "Rellene el campo stock", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        return true
     }
     override fun onDestroyView() {
         super.onDestroyView()

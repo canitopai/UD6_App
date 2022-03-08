@@ -40,6 +40,7 @@ class ProductDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requestData()
+        refreshData()
         binding.btnBack.setOnClickListener {
             val action = ProductDetailFragmentDirections.actionProductDetailFragmentToProductListFragment()
            findNavController().navigate(action)
@@ -50,7 +51,17 @@ class ProductDetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+    private fun refreshData(){
+        val exists = db.productDao().exists(binding.tvDtName.text.toString())
+        if(exists == true){
+            binding.btnAddFavo.setImageResource(R.drawable.ic_baseline_star_24)
+        }else{
+            binding.btnAddFavo.setImageResource(R.drawable.ic_baseline_star_border_24)
+        }
+    }
+    private fun ifExist(){
 
+    }
     private fun requestData() {
 
 
@@ -85,9 +96,17 @@ class ProductDetailFragment : Fragment() {
                         null,response.body()?.imageUrl.toString()
                         ,response.body()?.name.toString(),response.body()?.regularPrice.toString().toDouble(),response.body()?.stock.toString().toInt())
 
-                    binding.btnAddFav.setOnClickListener {
-                        db.productDao().add(product)
-                        Toast.makeText(context, "Agregado a Favoritos", Toast.LENGTH_SHORT).show()
+                    
+                    binding.btnAddFavo.setOnClickListener {
+                        val exists = db.productDao().exists(binding.tvDtName.text.toString())
+                        if(exists == true){
+                            Toast.makeText(context, "Ya existe en favoritos", Toast.LENGTH_SHORT).show()
+                        }else{
+                            db.productDao().add(product)
+                            Toast.makeText(context, "Agregado a Favoritos", Toast.LENGTH_SHORT).show()
+                        }
+
+                        refreshData()
                     }
 
 
@@ -100,6 +119,7 @@ class ProductDetailFragment : Fragment() {
                         .load(response.body()?.imageUrl)
                         .placeholder(R.drawable.ic_launcher_foreground)
                         .into(binding.ivProd)
+                    refreshData()
                     Log.e("Retrofit", "Salió bien")
                 } else {
                     Toast.makeText(context, "400", Toast.LENGTH_SHORT).show()

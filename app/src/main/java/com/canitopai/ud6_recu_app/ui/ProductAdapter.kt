@@ -36,7 +36,7 @@ class ProductAdapter(private val onProductClicked: (ProductItem) -> Unit) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val prod = getItem(position)
-        if (prod.stock <= 5){
+        if (prod.stock!! <= 5){
             holder.binding.tvWarn.visibility = View.VISIBLE
         }
         holder.binding.tvName.text = prod.name

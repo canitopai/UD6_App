@@ -204,31 +204,25 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvDtStock" />
 
-                <Button
-                    android:id="@+id/btnAddFav"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="75dp"
-                    android:layout_height="64dp"
-                    android:layout_marginStart="120dp"
-                    android:textAlignment="center"
-                    android:textSize="20sp"
-                    app:icon="@android:drawable/btn_star_big_off"
-                    app:iconPadding="0dp"
-                    app:iconSize="70dp"
-                    app:iconTint="#DCD8D8"
-                    app:iconTintMode="src_in"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvDtName"
-                    tools:ignore="SpeakableTextPresentCheck" />
-
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:fontFamily="@font/akaya_telivigala"
                     android:text="¡Añadir a favoritos!"
-                    app:layout_constraintStart_toStartOf="@+id/btnAddFav"
-                    app:layout_constraintTop_toBottomOf="@+id/btnAddFav" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnAddFavo" />
+
+                <ImageView
+                    android:id="@+id/btnAddFavo"
+                    android:layout_width="64dp"
+                    android:layout_height="59dp"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/ic_baseline_star_24"
+                    app:layout_constraintStart_toStartOf="@+id/textView"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDtName" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
