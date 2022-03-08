@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.canitopai.proyectointegrador.core.NetworkManager
 import com.canitopai.ud6_recu_app.R
+import com.canitopai.ud6_recu_app.data.database.ProductModel
 import com.canitopai.ud6_recu_app.data.model.ProductItem
 import com.canitopai.ud6_recu_app.databinding.FragmentProductDetailBinding
 import com.squareup.picasso.Picasso
@@ -39,7 +40,6 @@ class ProductDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requestData()
-
         binding.btnBack.setOnClickListener {
             val action = ProductDetailFragmentDirections.actionProductDetailFragmentToProductListFragment()
            findNavController().navigate(action)
@@ -80,6 +80,17 @@ class ProductDetailFragment : Fragment() {
                     if (response.body()?.available == false){
                         binding.lblEmpty.visibility = View.VISIBLE
                     }
+
+                    val product = ProductModel(true,response.body()?.description.toString(),response.body()?.discountPrice.toString().toDouble(),
+                        null,response.body()?.imageUrl.toString()
+                        ,response.body()?.name.toString(),response.body()?.regularPrice.toString().toDouble(),response.body()?.stock.toString().toInt())
+
+                    binding.btnAddFav.setOnClickListener {
+                        db.productDao().add(product)
+                        Toast.makeText(context, "Agregado a Favoritos", Toast.LENGTH_SHORT).show()
+                    }
+
+
                     binding.tvDtName.text = response.body()?.name
                     binding.tvDtDesc.text = response.body()?.description
                     binding.tvDiscPrice.text = response.body()?.discountPrice.toString()

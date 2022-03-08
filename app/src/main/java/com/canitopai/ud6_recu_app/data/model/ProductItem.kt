@@ -15,7 +15,7 @@ data class ProductItem(
     @SerializedName("imageUrl")
     val imageUrl: String,
     @SerializedName("name")
-    val name: String,
+    var name: String,
     @SerializedName("regularPrice")
     val regularPrice: Double,
     @SerializedName("stock")

@@ -4,15 +4,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import com.canitopai.ud6_recu_app.R
+import com.canitopai.ud6_recu_app.data.database.*
 import com.canitopai.ud6_recu_app.data.model.ProductItem
 import com.canitopai.ud6_recu_app.databinding.ProductItemBinding
 import com.squareup.picasso.Picasso
+import kotlin.coroutines.coroutineContext
 
 
 class ProductAdapter(private val onProductClicked: (ProductItem) -> Unit) :
@@ -20,6 +24,7 @@ class ProductAdapter(private val onProductClicked: (ProductItem) -> Unit) :
     fun updateData(){
         notifyDataSetChanged()
     }
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,7 +41,6 @@ class ProductAdapter(private val onProductClicked: (ProductItem) -> Unit) :
         }
         holder.binding.tvName.text = prod.name
         holder.binding.tvPrice.text = prod.discountPrice.toString()
-        holder.binding.tvDesc.text = prod.description
 
         Picasso.get()
             .load(prod.imageUrl)
@@ -47,6 +51,8 @@ class ProductAdapter(private val onProductClicked: (ProductItem) -> Unit) :
         holder.binding.root.setOnClickListener {
             onProductClicked(prod)
         }
+
+
     }
 
     inner class ViewHolder(val binding: ProductItemBinding) : RecyclerView.ViewHolder(binding.root)

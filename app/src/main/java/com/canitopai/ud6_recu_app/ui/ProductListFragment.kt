@@ -55,15 +55,11 @@ class ProductListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        binding.recyclerView.layoutManager = GridLayoutManager(context, 1)
+        binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
         binding.recyclerView.adapter = adapter
         binding.btnAdd.setOnClickListener{
             val action = ProductListFragmentDirections.actionProductListFragmentToProductAddFragment(
             )
-            findNavController().navigate(action)
-        }
-        binding.btnFav.setOnClickListener {
-            val action = ProductListFragmentDirections.actionProductListFragmentToProductFavFragment2()
             findNavController().navigate(action)
         }
         binding.btnSearch.setOnClickListener {
