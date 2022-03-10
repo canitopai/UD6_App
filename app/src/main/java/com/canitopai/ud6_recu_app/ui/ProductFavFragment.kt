@@ -35,10 +35,6 @@ class ProductFavFragment : Fragment() {
 
     private val adapter = ProductAdapter {
         db.productDao().deleteProd(it.name)
-        //val action = ProductFavFragmentDirections.actionProductFavFragment2ToProductDetailFragment(
-          //  it.id
-        //)
-        //findNavController().navigate(action)
         refreshProducts()
         checkEmpty()
 

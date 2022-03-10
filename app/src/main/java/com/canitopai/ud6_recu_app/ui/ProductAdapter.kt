@@ -53,7 +53,9 @@ class ProductAdapter(private val onProductClicked: (ProductItem) -> Unit) :
         }
 
 
+
     }
+
 
     inner class ViewHolder(val binding: ProductItemBinding) : RecyclerView.ViewHolder(binding.root)
 

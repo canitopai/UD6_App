@@ -68,15 +68,21 @@ class ProductListFragment : Fragment() {
             for(i in adapter.currentList){
                 if (i.name.lowercase().contains(filtro.lowercase())){
                     filteredList.add(i)
-                    binding.recyclerView
+                    adapter.submitList(filteredList)
+                    adapter.notifyDataSetChanged()
                 }
             }
 
         }
+        binding.btnRemove.setOnClickListener {
+            refreshFilter()
+        }
 
     }
 
-
+    private fun refreshFilter(){
+        requestData()
+    }
     private fun requestData() {
 
         NetworkManager.service.getProducts().enqueue(object : Callback<List<ProductItem>> {
