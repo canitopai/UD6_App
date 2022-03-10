@@ -17,7 +17,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        db = Room.databaseBuilder(applicationContext,ProductDb::class.java,"products").allowMainThreadQueries().fallbackToDestructiveMigration().build()
+        db = Room.databaseBuilder(applicationContext,ProductDb::class.java,"products")
+            .allowMainThreadQueries()
+            .fallbackToDestructiveMigration()
+            .build()
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         val navController = findNavController(R.id.fragmentContainerView)
